@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#07090e">
+
+<!-- Настройки для айфона и андроид -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="КНиИС-262/3">
+<link rel="apple-touch-icon" href="icon-512.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="manifest" href="manifest.json">
+
+<title>КНиИС-262/3 Расписание и диск</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root {
+    --bg: #07090e;
+    --bg-panel: #0d111a;
+    --bg-panel-2: #131926;
+    --bg-card-hover: #182032;
+    --line: #1e2638;
+    --line-soft: #151b28;
+    --text: #eef2f8;
+    --text-dim: #94a0b8;
+    --text-faint: #5e6b85;
+
+    --lec: #4e8cff;
+    --lec-bg: rgba(78, 140, 255, 0.12);
+    --prac: #f59e0b;
+    --prac-bg: rgba(245, 158, 11, 0.12);
+    --lab: #a855f7;
+    --lab-bg: rgba(168, 85, 247, 0.14);
+    --accent: #22d3ee;
+    --accent-bg: rgba(34, 211, 238, 0.10);
+    --now: #10b981;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(ellipse 900px 450px at 15% -5%, rgba(78, 140, 255, 0.09), transparent 65%),
+      radial-gradient(ellipse 800px 450px at 95% 0%, rgba(168, 85, 247, 0.08), transparent 65%),
+      var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  .page { max-width: 1280px; margin: 0 auto; padding: 24px 20px 48px; }
+
+  /* ---------- гирой ---------- */
+  .hero {
+    position: relative;
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(19, 25, 38, 0.92), rgba(13, 17, 26, 0.96));
+    border-radius: 14px;
+    padding: 26px 28px 22px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.65);
+  }
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: linear-gradient(180deg, black, transparent 85%);
+    opacity: 0.45;
+    pointer-events: none;
+  }
+  .hero-top { position: relative; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
+  .eyebrow-row {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--text-dim); font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+    background: rgba(255, 255, 255, 0.03); border: 1px solid var(--line);
+    padding: 4px 11px; border-radius: 999px;
+  }
+  .dot-live { width: 7px; height: 7px; border-radius: 50%; background: var(--now); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 1.08;
+    margin: 12px 0 6px;
+    color: #f8fafc;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 span { color: var(--lec); }
+  .hero p.sub { margin: 0; color: var(--text-dim); font-size: 14.5px; max-width: 600px; line-height: 1.5; }
+
+  /* хухл диск энд уведомления */
+  .quick-actions {
+    position: relative;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .btn-action {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 15px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .15s ease;
+    border: 1px solid var(--line);
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-drive {
+    background: linear-gradient(135deg, rgba(78, 140, 255, 0.18), rgba(168, 85, 247, 0.18));
+    border-color: rgba(78, 140, 255, 0.4);
+    color: #fff;
+  }
+  .btn-drive:hover {
+    border-color: var(--lec);
+    background: linear-gradient(135deg, rgba(78, 140, 255, 0.28), rgba(168, 85, 247, 0.28));
+    transform: translateY(-1px);
+  }
+  .btn-notify {
+    background: var(--bg-panel-2);
+    color: var(--text-dim);
+  }
+  .btn-notify:hover {
+    border-color: #2c384e;
+    color: var(--text);
+  }
+  .btn-notify.enabled {
+    background: rgba(16, 185, 129, 0.12);
+    border-color: rgba(16, 185, 129, 0.45);
+    color: #34d399;
+  }
+  .btn-action svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  /* виджет тек пары */
+  .live-status {
+    position: relative;
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 9px;
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    font-size: 13.5px;
+  }
+  .live-status.chill {
+    background: rgba(78, 140, 255, 0.07);
+    border-color: rgba(78, 140, 255, 0.25);
+  }
+  .live-left { display: flex; align-items: center; gap: 10px; }
+  .pulse-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--now);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    flex-shrink: 0;
+  }
+  .live-status.chill .pulse-dot { background: var(--lec); box-shadow: 0 0 0 4px rgba(78, 140, 255, 0.2); }
+  .live-room {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 12.5px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+  }
+
+  .hero-code {
+    position: relative;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: var(--text-faint);
+    border-left: 2px solid var(--line);
+    padding-left: 14px;
+    white-space: pre;
+  }
+  .hero-code b { color: var(--lec); font-weight: 500; }
+  .hero-code i { color: var(--lab); font-style: normal; }
+
+  /* фильтр дней- */
+  .controls-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .legend {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .legend .label { color: var(--text-faint); font-size: 12px; font-family: 'IBM Plex Mono', monospace; margin-right: 4px; }
+  .chip {
+    display: flex; align-items: center; gap: 7px;
+    border: 1px solid var(--line);
+    background: var(--bg-panel);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text-dim);
+    cursor: pointer;
+    user-select: none;
+    transition: all .15s ease;
+  }
+  .chip .sw { width: 8px; height: 8px; border-radius: 2px; flex: 0 0 auto; }
+  .chip[data-type="лекция"] .sw { background: var(--lec); }
+  .chip[data-type="практика"] .sw { background: var(--prac); }
+  .chip[data-type="лабораторная"] .sw { background: var(--lab); }
+  .chip.active { color: var(--text); border-color: #2c384e; background: var(--bg-panel-2); }
+  .chip.off { opacity: 0.38; }
+
+  /* мобиль дни */
+  .day-tabs {
+    display: none;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+    width: 100%;
+    background: var(--bg-panel);
+    padding: 6px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    margin-bottom: 14px;
+  }
+  .day-tab {
+    border: none;
+    background: transparent;
+    color: var(--text-dim);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 8px 4px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .15s;
+    text-align: center;
+  }
+  .day-tab.active {
+    background: var(--lec);
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(78, 140, 255, 0.35);
+  }
+  .day-tab.is-today:not(.active) {
+    color: var(--accent);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+  }
+
+  /* сетка грид гей */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  .day {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .day.today {
+    border-color: rgba(34, 211, 238, 0.45);
+    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.12);
+  }
+
+  .day-head {
+    padding: 13px 14px 11px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.015);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .day-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; }
+  .day.today .day-name { color: var(--accent); }
+  .day-badge {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-dim);
+    border: 1px solid var(--line); background: rgba(255, 255, 255, 0.03);
+    padding: 2px 7px; border-radius: 4px;
+  }
+
+  .cards { padding: 10px; display: flex; flex-direction: column; gap: 9px; flex: 1; }
+
+  .card {
+    position: relative;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--lec);
+    background: var(--bg-panel-2);
+    border-radius: 7px;
+    padding: 11px 12px;
+    transition: transform .12s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
+  }
+  .card:hover { background: var(--bg-card-hover); }
+  .card[data-type="практика"] { border-left-color: var(--prac); }
+  .card[data-type="лабораторная"] { border-left-color: var(--lab); }
+  .card.optional-pe {
+    opacity: 0.55;
+    border-style: dashed;
+    border-left-style: solid;
+  }
+  .card.optional-pe:hover { opacity: 0.9; }
+  .card.hidden, .card.pe-hidden { display: none; }
+  .card.current-lesson {
+    border-color: var(--now);
+    border-left-width: 4px;
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.15);
+    opacity: 1;
+  }
+
+  .card-time {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+    display: flex; align-items: center; justify-content: space-between; gap: 6px;
+  }
+  .type-tag {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+  }
+  .card[data-type="лекция"] .type-tag { color: var(--lec); background: var(--lec-bg); }
+  .card[data-type="практика"] .type-tag { color: var(--prac); background: var(--prac-bg); }
+  .card[data-type="лабораторная"] .type-tag { color: var(--lab); background: var(--lab-bg); }
+
+  .card-title {
+    font-size: 13.5px;
+    line-height: 1.35;
+    color: var(--text);
+    margin: 0 0 8px;
+    font-weight: 600;
+  }
+  .opt-note {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    border: 1px solid var(--line);
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .teacher-name {
+    font-size: 11.5px;
+    color: var(--text-dim);
+    line-height: 1.35;
+  }
+  .room-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #e2e8f0;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  /* увед внутри страницы */
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-width: 340px;
+    background: #131926;
+    border: 1px solid var(--lec);
+    color: var(--text);
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.45;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.65);
+    z-index: 999;
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: all .22s ease;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* учитили */
+  .teachers {
+    margin-top: 26px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg-panel);
+    padding: 22px 24px;
+  }
+  .teachers h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 14px;
+    color: #f4f7fb;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .teachers h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  .t-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px 24px;
+  }
+  .t-row {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 12.8px;
+  }
+  .t-name { color: var(--text); font-weight: 500; }
+  .t-role { color: var(--text-faint); font-size: 11.5px; text-align: right; }
+
+  .foot-note {
+    margin-top: 16px;
+    color: var(--text-faint);
+    font-size: 11.5px;
+    font-family: 'IBM Plex Mono', monospace;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+  }
+  .foot-note .k { color: var(--lab); }
+
+  /* для телифони- */
+  @media (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .t-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-code { display: none; }
+  }
+  @media (max-width: 680px) {
+    .page { padding: 14px 12px 36px; }
+    .hero { padding: 20px 16px 18px; margin-bottom: 14px; }
+    .hero h1 { font-size: 30px; }
+    .quick-actions { gap: 8px; }
+    .btn-action { flex: 1 1 auto; justify-content: center; padding: 10px 12px; font-size: 12.5px; }
+    .day-tabs { display: grid; }
+    .grid { grid-template-columns: 1fr; }
+    .day.mobile-hidden { display: none; }
+    .t-grid { grid-template-columns: 1fr; }
+    .card-title { font-size: 14px; }
+    .room-badge { font-size: 12px; padding: 3px 8px; }
+    .toast { left: 12px; right: 12px; bottom: 14px; max-width: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-top">
+      <div>
+        <div class="eyebrow-row"><span class="dot-live"></span>КазУТБ · бырыншы семестр · <span id="currentWeek" style="color: var(--accent); font-weight: 600;">... неделя</span> · Новый корпус</div>
+        <h1>КНиИС<span>-262/3</span></h1>
+        <p class="sub">Факультет компьютерных наук и интеллектуальных систем</p>
+
+        <div class="quick-actions">
+          <!-- сылочка -->
+          <a href="https://drive.google.com/drive/folders/19M7Q54yMx3URyLLMcGEpxSropuj2xkYH?usp=sharing" target="_blank" rel="noopener" class="btn-action btn-drive" id="driveBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            Google Disk группы (Работы)
+          </a>
+
+          <!-- уведомления -->
+          <button type="button" class="btn-action btn-notify" id="notifyBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span id="notifyBtnText">Уведомления: Выкл</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-code">const <b>group</b> = "КНиИС-262/3";
+const <b>building</b> = "IT Campus (4 корпус)";
+<i>notify</i>(lesson, "-10 min");</div>
+    </div>
+
+    <div class="live-status chill" id="liveStatus">
+      <div class="live-left">
+        <span class="pulse-dot"></span>
+        <span id="liveText">Загрузка расписания братан...</span>
+      </div>
+      <span class="live-room" id="liveRoom">—</span>
+    </div>
+  </div>
+
+  <!-- переключатель дней -->
+  <div class="day-tabs" id="dayTabs">
+    <button class="day-tab" data-target="1">ПН</button>
+    <button class="day-tab" data-target="2">ВТ</button>
+    <button class="day-tab" data-target="3">СР</button>
+    <button class="day-tab" data-target="4">ЧТ</button>
+    <button class="day-tab" data-target="5">ПТ</button>
+    <button class="day-tab active" data-target="all">Все</button>
+  </div>
+
+  <div class="controls-bar">
+    <div class="legend">
+      <span class="label">Фильтр:</span>
+      <div class="chip active" data-type="лекция"><span class="sw"></span>Лекции</div>
+      <div class="chip active" data-type="практика"><span class="sw"></span>Практики</div>
+      <div class="chip active" data-type="лабораторная"><span class="sw"></span>Лаб. работы</div>
+      <div class="chip active" id="togglePeChip" title="Показать/скрыть физру в 14:00">Бесполезность</div>
+    </div>
+  </div>
+
+  <div class="grid" id="grid">
+
+    <!-- пон едельник1 -->
+    <div class="day" data-day="1">
+      <div class="day-head"><span class="day-name">Понедельник</span><span class="day-badge">4 корпус</span></div>
+      <div class="cards">
+        <div class="card" data-type="лекция" data-start="09:00" data-end="09:50">
+          <div class="card-time">09:00–09:50 <span class="type-tag">лекция</span></div>
+          <p class="card-title">Информационно-коммуникационные технологии</p>
+          <div class="card-footer">
+            <span class="teacher-name">Сейталиева А.А., PhD</span>
+            <span class="room-badge">ауд. 4/402</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="лекция" data-start="11:00" data-end="11:50">
+          <div class="card-time">11:00–11:50 <span class="type-tag">лекция</span></div>
+          <p class="card-title">Устойчивое развитие, экология и БЖД</p>
+          <div class="card-footer">
+            <span class="teacher-name">Кусайнов Х.Х., профессор</span>
+            <span class="room-badge">ауд. 4/403</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="лекция" data-start="12:00" data-end="12:50">
+          <div class="card-time">12:00–12:50 <span class="type-tag">лекция</span></div>
+          <p class="card-title">Устойчивое развитие, экология и БЖД</p>
+          <div class="card-footer">
+            <span class="teacher-name">Кусайнов Х.Х., профессор</span>
+            <span class="room-badge">ауд. 4/403</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- вторник2 -->
+    <div class="day" data-day="2">
+      <div class="day-head"><span class="day-name">Вторник</span></div>
+      <div class="cards">
+        <div class="card" data-type="лабораторная" data-start="08:00" data-end="08:50">
+          <div class="card-time">08:00–08:50 <span class="type-tag">лаб.</span></div>
+          <p class="card-title">Алгоритмы, структуры данных и программирование (СИ)</p>
+          <div class="card-footer">
+            <span class="teacher-name">Қыдырғалиұлы Д., сеньор-лектор</span>
+            <span class="room-badge">ауд. 4/508</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="лабораторная" data-start="09:00" data-end="09:50">
+          <div class="card-time">09:00–09:50 <span class="type-tag">лаб.</span></div>
+          <p class="card-title">Алгоритмы, структуры данных и программирование (СИ)</p>
+          <div class="card-footer">
+            <span class="teacher-name">Қыдырғалиұлы Д., сеньор-лектор</span>
+            <span class="room-badge">ауд. 4/508</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="лекция" data-start="10:00" data-end="10:50">
+          <div class="card-time">10:00–10:50 <span class="type-tag">лекция</span></div>
+          <p class="card-title">Линейная алгебра</p>
+          <div class="card-footer">
+            <span class="teacher-name">Исина Н.К., асс. профессора</span>
+            <span class="room-badge">ауд. 1/406</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="лекция" data-start="11:00" data-end="11:50">
+          <div class="card-time">11:00–11:50 <span class="type-tag">лекция</span></div>
+          <p class="card-title">Введение в искусственный интеллект</p>
+          <div class="card-footer">
+            <span class="teacher-name">Байбулова М., сеньор-лектор</span>
+            <span class="room-badge">ауд. 4/503</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="лекция" data-start="12:00" data-end="12:50">
+          <div class="card-time">12:00–12:50 <span class="type-tag">лекция</span></div>
+          <p class="card-title">Алгоритмы, структуры данных и программирование (СИ)</p>
+          <div class="card-footer">
+            <span class="teacher-name">Қыдырғалиұлы Р., сеньор-лектор</span>
+            <span class="room-badge">ауд. 4/503</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- срида3 -->
+    <div class="day" data-day="3">
+      <div class="day-head"><span class="day-name">Среда</span></div>
+      <div class="cards">
+        <div class="card" data-type="практика" data-start="08:00" data-end="08:50">
+          <div class="card-time">08:00–08:50 <span class="type-tag">практика</span></div>
+          <p class="card-title">Линейная алгебра</p>
+          <div class="card-footer">
+            <span class="teacher-name">Мажитова А.</span>
+            <span class="room-badge">ауд. 2/409</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="практика" data-start="09:00" data-end="09:50">
+          <div class="card-time">09:00–09:50 <span class="type-tag">практика</span></div>
+          <p class="card-title">Линейная алгебра</p>
+          <div class="card-footer">
+            <span class="teacher-name">Мажитова А.</span>
+            <span class="room-badge">ауд. 2/409</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="практика" data-start="10:00" data-end="10:50">
+          <div class="card-time">10:00–10:50 <span class="type-tag">практика</span></div>
+          <p class="card-title">Казахский язык</p>
+          <div class="card-footer">
+            <span class="teacher-name">Галямова Ж.К., асс. профессора</span>
+            <span class="room-badge">ауд. 2/513</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="практика" data-start="11:00" data-end="11:50">
+          <div class="card-time">11:00–11:50 <span class="type-tag">практика</span></div>
+          <p class="card-title">Модуль: экономика, предпринимательство и право</p>
+          <div class="card-footer">
+            <span class="teacher-name">Асаинов А.Ж., сеньор-лектор</span>
+            <span class="room-badge">ауд. 2/508</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="практика" data-start="12:00" data-end="12:50">
+          <div class="card-time">12:00–12:50 <span class="type-tag">практика</span></div>
+          <p class="card-title">Иностранный язык</p>
+          <div class="card-footer">
+            <span class="teacher-name">Кунтубаева Г.О., сеньор-лектор</span>
+            <span class="room-badge">ауд. 2/508</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- четверг4 -->
+    <div class="day" data-day="4">
+      <div class="day-head"><span class="day-name">Четверг</span></div>
+      <div class="cards">
+        <div class="card" data-type="лабораторная" data-start="08:00" data-end="08:50">
+          <div class="card-time">08:00–08:50 <span class="type-tag">лаб.</span></div>
+          <p class="card-title">Информационно-коммуникационные технологии</p>
+          <div class="card-footer">
+            <span class="teacher-name">Жандырова А., сеньор-лектор</span>
+            <span class="room-badge">ауд. 3/510</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="лабораторная" data-start="09:00" data-end="09:50">
+          <div class="card-time">09:00–09:50 <span class="type-tag">лаб.</span></div>
+          <p class="card-title">Информационно-коммуникационные технологии</p>
+          <div class="card-footer">
+            <span class="teacher-name">Жандырова А., сеньор-лектор</span>
+            <span class="room-badge">ауд. 3/510</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="практика" data-start="10:00" data-end="10:50">
+          <div class="card-time">10:00–10:50 <span class="type-tag">практика</span></div>
+          <p class="card-title">Модуль: экономика, предпринимательство и право</p>
+          <div class="card-footer">
+            <span class="teacher-name">Лузанов В.А., сеньор-лектор</span>
+            <span class="room-badge">ауд. 3/401</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="практика" data-start="11:00" data-end="11:50">
+          <div class="card-time">11:00–11:50 <span class="type-tag">практика</span></div>
+          <p class="card-title">Казахский язык</p>
+          <div class="card-footer">
+            <span class="teacher-name">Галямова Ж.К., асс. профессора</span>
+            <span class="room-badge">ауд. 4/208</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="практика" data-start="12:00" data-end="12:50">
+          <div class="card-time">12:00–12:50 <span class="type-tag">практика</span></div>
+          <p class="card-title">Модуль: экономика, предпринимательство и право</p>
+          <div class="card-footer">
+            <span class="teacher-name">Тасанова Г.Д., сеньор-лектор</span>
+            <span class="room-badge">ауд. 4/403</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="практика" data-start="13:00" data-end="13:50">
+          <div class="card-time">13:00–13:50 <span class="type-tag">практика</span></div>
+          <p class="card-title">Устойчивое развитие, экология и БЖД</p>
+          <div class="card-footer">
+            <span class="teacher-name">Князева К.Ж., ассистент</span>
+            <span class="room-badge">ауд. 2/501</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- пятница -->
+    <div class="day" data-day="5">
+      <div class="day-head"><span class="day-name">Пятница</span></div>
+      <div class="cards">
+        <div class="card" data-type="практика" data-start="08:00" data-end="08:50">
+          <div class="card-time">08:00–08:50 <span class="type-tag">практика</span></div>
+          <p class="card-title">Казахский язык</p>
+          <div class="card-footer">
+            <span class="teacher-name">Галямова Ж.К., асс. профессора</span>
+            <span class="room-badge">ауд. 4/204</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="лабораторная" data-start="09:00" data-end="09:50">
+          <div class="card-time">09:00–09:50 <span class="type-tag">лаб.</span></div>
+          <p class="card-title">Введение в искусственный интеллект</p>
+          <div class="card-footer">
+            <span class="teacher-name">Ишунин И.Л., ассистент</span>
+            <span class="room-badge">ауд. 3/508</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="практика" data-start="10:00" data-end="10:50">
+          <div class="card-time">10:00–10:50 <span class="type-tag">практика</span></div>
+          <p class="card-title">Физическая культура</p>
+          <div class="card-footer">
+            <span class="teacher-name">Бегайдаров К.Р., ассистент</span>
+            <span class="room-badge">спортзал</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="практика" data-start="11:00" data-end="11:50">
+          <div class="card-time">11:00–11:50 <span class="type-tag">практика</span></div>
+          <p class="card-title">Физическая культура</p>
+          <div class="card-footer">
+            <span class="teacher-name">Бегайдаров К.Р., ассистент</span>
+            <span class="room-badge">спортзал</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="практика" data-start="12:00" data-end="12:50">
+          <div class="card-time">12:00–12:50 <span class="type-tag">практика</span></div>
+          <p class="card-title">Иностранный язык</p>
+          <div class="card-footer">
+            <span class="teacher-name">Кунтубаева Г.О., сеньор-лектор</span>
+            <span class="room-badge">ауд. 2/301</span>
+          </div>
+        </div>
+
+        <div class="card" data-type="практика" data-start="13:00" data-end="13:50">
+          <div class="card-time">13:00–13:50 <span class="type-tag">практика</span></div>
+          <p class="card-title">Иностранный язык</p>
+          <div class="card-footer">
+            <span class="teacher-name">Кунтубаева Г.О., сеньор-лектор</span>
+            <span class="room-badge">ауд. 2/301</span>
+          </div>
+        </div>
+
+        <div class="card optional-pe" data-type="практика" data-start="14:00" data-end="14:50" data-optional="true">
+          <div class="card-time">14:00–14:50 <span class="type-tag">практика</span></div>
+          <span class="opt-note">по расписанию / обычно нет</span>
+          <p class="card-title">Физическая культура(Бесполезность)</p>
+          <div class="card-footer">
+            <span class="teacher-name">Шкурков А.С., асс. профессора</span>
+            <span class="room-badge">спортзал</span>
+          </div>
+        </div>
+
+        <div class="card optional-pe" data-type="практика" data-start="15:00" data-end="15:50" data-optional="true">
+          <div class="card-time">15:00–15:50 <span class="type-tag">практика</span></div>
+          <span class="opt-note">по расписанию / обычно нет</span>
+          <p class="card-title">Физическая культура(Бесполезность)</p>
+          <div class="card-footer">
+            <span class="teacher-name">Шкурков А.С., асс. профессора</span>
+            <span class="room-badge">спортзал</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="teachers">
+    <h2>Преподаватели</h2>
+    <div class="t-grid">
+      <div class="t-row"><span class="t-name">Сейталиева А.А.</span><span class="t-role">PhD · ИКТ (лекция)</span></div>
+      <div class="t-row"><span class="t-name">Кусайнов Х.Х.</span><span class="t-role">профессор · Экология и БЖД</span></div>
+      <div class="t-row"><span class="t-name">Қыдырғалиұлы Д.</span><span class="t-role">сеньор-лектор · Алгоритмы, СИ (лаб.)</span></div>
+      <div class="t-row"><span class="t-name">Қыдырғалиұлы Р.</span><span class="t-role">сеньор-лектор · Алгоритмы, СИ (лек.)</span></div>
+      <div class="t-row"><span class="t-name">Исина Н.К.</span><span class="t-role">асс. профессора · Линейная алгебра</span></div>
+      <div class="t-row"><span class="t-name">Байбулова М.</span><span class="t-role">сеньор-лектор · Введение в ИИ</span></div>
+      <div class="t-row"><span class="t-name">Мажитова А.</span><span class="t-role">Линейная алгебра (практика)</span></div>
+      <div class="t-row"><span class="t-name">Галямова Ж.К.</span><span class="t-role">асс. профессора · Казахский язык</span></div>
+      <div class="t-row"><span class="t-name">Кунтубаева Г.О.</span><span class="t-role">сеньор-лектор · Иностранный язык</span></div>
+      <div class="t-row"><span class="t-name">Жандырова А.</span><span class="t-role">сеньор-лектор · ИКТ (лаб.)</span></div>
+      <div class="t-row"><span class="t-name">Асаинов А.Ж.</span><span class="t-role">сеньор-лектор · Модуль экономики (ср.)</span></div>
+      <div class="t-row"><span class="t-name">Лузанов В.А.</span><span class="t-role">сеньор-лектор · Модуль экономики (чт. 10:00)</span></div>
+      <div class="t-row"><span class="t-name">Тасанова Г.Д.</span><span class="t-role">сеньор-лектор · Модуль экономики (чт. 12:00)</span></div>
+      <div class="t-row"><span class="t-name">Князева К.Ж.</span><span class="t-role">ассистент · Экология и БЖД (пр.)</span></div>
+      <div class="t-row"><span class="t-name">Ишунин И.Л.</span><span class="t-role">ассистент · Введение в ИИ (лаб.)</span></div>
+      <div class="t-row"><span class="t-name">Бегайдаров К.Р.</span><span class="t-role">ассистент · Физ. культура (пт. 10:00)</span></div>
+      <div class="t-row"><span class="t-name">Шкурков А.С.</span><span class="t-role">асс. профессора · Физ. культура (пт. 14:00)</span></div>
+    </div>
+    <div class="foot-note">
+      <span><span class="k">//</span> КНиИС-262/3 · КазУТБ</span>
+      <span>Сделано для группы 262/3 · 2026</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Сообщение на жкран -->
+<div class="toast" id="toast"></div>
+
+<script>
+
+  // авто расчет неделей
+  function updateAcademicWeek() {
+    const semStart = new Date(2026, 8, 7); // 07.09.2026
+    const now = new Date();
+    const diffDays = Math.floor((now - semStart) / (1000 * 60 * 60 * 24));
+    const weekNum = Math.floor(diffDays / 7) + 1;
+    const weekEl = document.getElementById('currentWeek');
+    if (weekEl) {
+      weekEl.textContent = (weekNum > 0 ? weekNum : 1) + '-я неделя';
+    }
+  }
+  updateAcademicWeek();
+
+  const jsDay = new Date().getDay();
+  const days = document.querySelectorAll('.day');
+  const tabs = document.querySelectorAll('.day-tab');
+
+  days.forEach(d => {
+    if (parseInt(d.dataset.day, 10) === jsDay) d.classList.add('today');
+  });
+  tabs.forEach(t => {
+    if (parseInt(t.dataset.target, 10) === jsDay) t.classList.add('is-today');
+  });
+
+  function selectDayTab(target) {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.target === String(target)));
+    days.forEach(d => {
+      if (target === 'all') {
+        d.classList.remove('mobile-hidden');
+      } else {
+        d.classList.toggle('mobile-hidden', d.dataset.day !== String(target));
+      }
+    });
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => selectDayTab(tab.dataset.target));
+  });
+
+  if (window.innerWidth <= 680 && jsDay >= 1 && jsDay <= 5) {
+    selectDayTab(jsDay);
+  }
+
+  // Фильтр по типу пар
+  document.querySelectorAll('.chip[data-type]').forEach(chip => {
+    chip.addEventListener('click', () => {
+      chip.classList.toggle('active');
+      chip.classList.toggle('off');
+      const type = chip.dataset.type;
+      const show = chip.classList.contains('active');
+      document.querySelectorAll('.card[data-type="' + type + '"]').forEach(card => {
+        card.classList.toggle('hidden', !show);
+      });
+    });
+  });
+
+  // Переключатель бесполезности
+  const peChip = document.getElementById('togglePeChip');
+  peChip.addEventListener('click', () => {
+    peChip.classList.toggle('active');
+    peChip.classList.toggle('off');
+    const show = peChip.classList.contains('active');
+    document.querySelectorAll('.card.optional-pe').forEach(c => {
+      c.classList.toggle('pe-hidden', !show);
+    });
+  });
+
+  function toMin(str) {
+    const [h, m] = str.split(':').map(Number);
+    return h * 60 + m;
+  }
+
+  // уведомления перкключатель
+  const notifyBtn = document.getElementById('notifyBtn');
+  const notifyBtnText = document.getElementById('notifyBtnText');
+  const toastEl = document.getElementById('toast');
+  let notifyEnabled = localStorage.getItem('kniis_notify') === 'true';
+  const sentNotifications = new Set();
+
+  function showToast(msg) {
+    toastEl.innerHTML = msg;
+    toastEl.classList.add('show');
+    setTimeout(() => toastEl.classList.remove('show'), 4500);
+  }
+
+  function updateNotifyUI() {
+    if (!('Notification' in window) || Notification.permission !== 'granted') {
+      notifyEnabled = false;
+    }
+    notifyBtn.classList.toggle('enabled', notifyEnabled);
+    notifyBtnText.textContent = notifyEnabled
+      ? 'Уведомления: Вкл (за 10 мин)'
+      : 'Уведомления: Выкл';
+  }
+
+  function sendNotification(title, body) {
+    if (notifyEnabled && 'Notification' in window && Notification.permission === 'granted') {
+      try {
+        new Notification(title, {
+          body: body,
+          icon: 'icon-512.png'
+        });
+      } catch (e) {
+        showToast('<b>' + title + '</b><br>' + body);
+      }
+    } else if (notifyEnabled) {
+      showToast('<b>' + title + '</b><br>' + body);
+    }
+  }
+
+  notifyBtn.addEventListener('click', async () => {
+    if (!('Notification' in window)) {
+      showToast('На IOS нажми <b>«Поделиться» → «На экран домой»</b>, чтобы включить системные пуш-уведомления!');
+      return;
+    }
+
+    if (notifyEnabled) {
+      notifyEnabled = false;
+      localStorage.setItem('kniis_notify', 'false');
+      updateNotifyUI();
+      showToast('🔕 Уведомления отключены');
+      return;
+    }
+
+    const perm = await Notification.requestPermission();
+    if (perm === 'granted') {
+      notifyEnabled = true;
+      localStorage.setItem('kniis_notify', 'true');
+      updateNotifyUI();
+      sendNotification('КНиИС-262/3 · Уведомления включены!', 'Напоминание за 10 минут до начала каждой пары с номером кабинета');
+      showToast('🔔 Уведомления включены! Напоминание за 10 минут до пары');
+    } else {
+      showToast('Разреши отправку уведомлений в настройках браузера, чтобы функция работала=)');
+    }
+  });
+
+  updateNotifyUI();
+
+  function updateLiveStatus() {
+    const now = new Date();
+    const curDay = now.getDay();
+    const curMin = now.getHours() * 60 + now.getMinutes();
+    const statusBox = document.getElementById('liveStatus');
+    const liveText = document.getElementById('liveText');
+    const liveRoom = document.getElementById('liveRoom');
+
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('current-lesson'));
+
+    const todayCol = document.querySelector('.day[data-day="' + curDay + '"]');
+    if (!todayCol) {
+      statusBox.classList.add('chill');
+      liveText.textContent = 'Сегодня выходной - пар нет, можно кайфовать))';
+      liveRoom.textContent = 'Выходной';
+      return;
+    }
+
+    const cards = Array.from(todayCol.querySelectorAll('.card:not(.optional-pe)'));
+    let currentCard = null;
+    let nextCard = null;
+
+    for (const c of cards) {
+      const start = toMin(c.dataset.start);
+      const end = toMin(c.dataset.end);
+      const title = c.querySelector('.card-title').textContent.trim();
+      const room = c.querySelector('.room-badge').textContent.trim();
+
+      // проверка уведомления до 10мин пары
+      if (notifyEnabled && start - curMin === 10) {
+        const key10 = curDay + '-' + c.dataset.start + '-10m';
+        if (!sentNotifications.has(key10)) {
+          sentNotifications.add(key10);
+          sendNotification('Через 10 минут пара · ' + room, title + ' (' + c.dataset.start + ')');
+        }
+      }
+
+      // проверка уведомления в ровно вначало пары
+      if (notifyEnabled && start === curMin) {
+        const key0 = curDay + '-' + c.dataset.start + '-start';
+        if (!sentNotifications.has(key0)) {
+          sentNotifications.add(key0);
+          sendNotification('Пара началась · ' + room, title);
+        }
+      }
+
+      if (curMin >= start && curMin < end) {
+        currentCard = c;
+      } else if (curMin < start && !nextCard) {
+        nextCard = c;
+      }
+    }
+
+    if (currentCard) {
+      currentCard.classList.add('current-lesson');
+      statusBox.classList.remove('chill');
+      const left = toMin(currentCard.dataset.end) - curMin;
+      const title = currentCard.querySelector('.card-title').textContent;
+      const room = currentCard.querySelector('.room-badge').textContent;
+      liveText.innerHTML = '<b>Сейчас идет:</b> ' + title + ' <span>(осталось ' + left + ' мин)</span>';
+      liveRoom.textContent = room;
+    } else if (nextCard) {
+      statusBox.classList.add('chill');
+      const wait = toMin(nextCard.dataset.start) - curMin;
+      const title = nextCard.querySelector('.card-title').textContent;
+      const room = nextCard.querySelector('.room-badge').textContent;
+      const waitStr = wait >= 60 ? Math.floor(wait / 60) + ' ч ' + (wait % 60) + ' мин' : wait + ' мин';
+      liveText.innerHTML = '<b>Следующая пара через ' + waitStr + ':</b> ' + title + ' (' + nextCard.dataset.start + ')';
+      liveRoom.textContent = room;
+    } else {
+      statusBox.classList.add('chill');
+      liveText.textContent = 'Основные пары на сегодня закончились! Вы выжили.';
+      liveRoom.textContent = 'Свободен.';
+    }
+  }
+
+  updateLiveStatus();
+  setInterval(updateLiveStatus, 20000);
+</script>
+</body>
+</html>
