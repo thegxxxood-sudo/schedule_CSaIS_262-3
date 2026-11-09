@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#1a1d26">
+<meta name="theme-color" content="#05070a">
 
 <!-- картинка -->
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,33 +18,32 @@
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
 
   :root {
-    --bg: #1a1d26;
-    --bg-panel: #212532;
-    --bg-panel-2: #2a2f3e;
-    --bg-card-hover: #323849;
-    --line: #373d50;
-    --line-soft: #2c3242;
-    --text: #e4e8f0;
-    --text-dim: #aab2c5;
-    --text-faint: #7f8aa3;
+    --bg: #05070a;
+    --bg-panel: #0b1015;
+    --bg-panel-2: #111820;
+    --bg-card-hover: #17212b;
+    --line: #1c2630;
+    --line-soft: #121a22;
+    --text: #eaf2f1;
+    --text-dim: #a9c0bd;
+    --text-faint: #7b9390;
 
-    --lec: #7aa2f7;
-    --lec-bg: rgba(122, 162, 247, 0.12);
-    --prac: #e0af68;
-    --prac-bg: rgba(224, 175, 104, 0.12);
-    --lab: #bb9af7;
-    --lab-bg: rgba(187, 154, 247, 0.14);
-    --accent: #7dcfff;
-    --accent-bg: rgba(125, 207, 255, 0.10);
-    --now: #9ece6a;
+    --lec: #7ab8e8;
+    --lec-bg: rgba(122, 184, 232, 0.12);
+    --prac: #e6c27a;
+    --prac-bg: rgba(230, 194, 122, 0.12);
+    --lab: #b4a4ee;
+    --lab-bg: rgba(180, 164, 238, 0.14);
+    --accent: #2dd4bf;
+    --accent-bg: rgba(111, 217, 196, 0.10);
+    --now: #8fe3a6;
   }
 
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body { margin: 0; padding: 0; }
   body {
     background:
-      radial-gradient(ellipse 900px 450px at 15% -5%, rgba(122, 162, 247, 0.09), transparent 65%),
-      radial-gradient(ellipse 800px 450px at 95% 0%, rgba(187, 154, 247, 0.08), transparent 65%),
+      radial-gradient(ellipse 800px 380px at 50% -10%, rgba(45, 212, 191, 0.10), transparent 70%),
       var(--bg);
     color: var(--text);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -58,7 +57,7 @@
   .hero {
     position: relative;
     border: 1px solid var(--line);
-    background: linear-gradient(180deg, rgba(42, 47, 62, 0.9), rgba(33, 37, 50, 0.95));
+    background: linear-gradient(180deg, rgba(44, 62, 67, 0.55), rgba(30, 44, 48, 0.5));
     border-radius: 18px;
     padding: 28px 30px 24px;
     overflow: hidden;
@@ -83,17 +82,17 @@
     background: rgba(255, 255, 255, 0.03); border: 1px solid var(--line);
     padding: 4px 11px; border-radius: 999px;
   }
-  .dot-live { width: 7px; height: 7px; border-radius: 50%; background: var(--now); box-shadow: 0 0 0 3px rgba(158, 206, 106, 0.2); }
+  .dot-live { width: 7px; height: 7px; border-radius: 50%; background: var(--now); box-shadow: 0 0 0 3px rgba(143, 227, 166, 0.2); }
   .hero h1 {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: 38px;
+    font-size: 44px;
     line-height: 1.08;
     margin: 12px 0 6px;
     color: #f1f4fa;
     letter-spacing: -0.02em;
   }
-  .hero h1 span { color: var(--lec); }
+  .hero h1 span { color: var(--accent); }
   .hero p.sub { margin: 0; color: var(--text-dim); font-size: 14.5px; max-width: 600px; line-height: 1.5; }
 
   /* энд уведомления */
@@ -115,13 +114,13 @@
     font-family: 'Inter', sans-serif;
   }
   .btn-drive {
-    background: linear-gradient(135deg, rgba(122, 162, 247, 0.18), rgba(187, 154, 247, 0.18));
-    border-color: rgba(122, 162, 247, 0.4);
+    background: linear-gradient(135deg, rgba(122, 184, 232, 0.18), rgba(180, 164, 238, 0.18));
+    border-color: rgba(122, 184, 232, 0.4);
     color: #fff;
   }
   .btn-drive:hover {
     border-color: var(--lec);
-    background: linear-gradient(135deg, rgba(122, 162, 247, 0.28), rgba(187, 154, 247, 0.28));
+    background: linear-gradient(135deg, rgba(122, 184, 232, 0.28), rgba(180, 164, 238, 0.28));
     transform: translateY(-1px);
   }
   .btn-notify {
@@ -129,13 +128,13 @@
     color: var(--text-dim);
   }
   .btn-notify:hover {
-    border-color: #4a526a;
+    border-color: rgba(160, 210, 205, 0.3);
     color: var(--text);
   }
   .btn-notify.enabled {
-    background: rgba(158, 206, 106, 0.12);
-    border-color: rgba(158, 206, 106, 0.45);
-    color: #a9d67f;
+    background: rgba(143, 227, 166, 0.12);
+    border-color: rgba(143, 227, 166, 0.45);
+    color: #8fe3a6;
   }
   .btn-action svg { width: 16px; height: 16px; flex-shrink: 0; }
 
@@ -145,22 +144,22 @@
     margin-top: 16px;
     padding: 12px 16px;
     border-radius: 9px;
-    background: rgba(158, 206, 106, 0.08);
-    border: 1px solid rgba(158, 206, 106, 0.3);
+    background: rgba(143, 227, 166, 0.08);
+    border: 1px solid rgba(143, 227, 166, 0.3);
     display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
     font-size: 13.5px;
   }
   .live-status.chill {
-    background: rgba(122, 162, 247, 0.07);
-    border-color: rgba(122, 162, 247, 0.25);
+    background: rgba(122, 184, 232, 0.07);
+    border-color: rgba(122, 184, 232, 0.25);
   }
   .live-left { display: flex; align-items: center; gap: 10px; }
   .pulse-dot {
     width: 8px; height: 8px; border-radius: 50%; background: var(--now);
-    box-shadow: 0 0 0 4px rgba(158, 206, 106, 0.2);
+    box-shadow: 0 0 0 4px rgba(143, 227, 166, 0.2);
     flex-shrink: 0;
   }
-  .live-status.chill .pulse-dot { background: var(--lec); box-shadow: 0 0 0 4px rgba(122, 162, 247, 0.2); }
+  .live-status.chill .pulse-dot { background: var(--lec); box-shadow: 0 0 0 4px rgba(122, 184, 232, 0.2); }
   .live-room {
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 600;
@@ -210,7 +209,7 @@
   .chip[data-type="лекция"] .sw { background: var(--lec); }
   .chip[data-type="практика"] .sw { background: var(--prac); }
   .chip[data-type="лабораторная"] .sw { background: var(--lab); }
-  .chip.active { color: var(--text); border-color: #4a526a; background: var(--bg-panel-2); }
+  .chip.active { color: var(--text); border-color: rgba(160, 210, 205, 0.3); background: var(--bg-panel-2); }
   .chip.off { opacity: 0.38; }
 
   /* мобиль дни */
@@ -239,13 +238,13 @@
     text-align: center;
   }
   .day-tab.active {
-    background: var(--lec);
-    color: #1a1d26;
-    box-shadow: 0 2px 10px rgba(122, 162, 247, 0.35);
+    background: var(--accent);
+    color: #0f1a1c;
+    box-shadow: 0 2px 10px rgba(122, 184, 232, 0.35);
   }
   .day-tab.is-today:not(.active) {
     color: var(--accent);
-    border: 1px solid rgba(125, 207, 255, 0.3);
+    border: 1px solid rgba(111, 217, 196, 0.3);
   }
 
   /* сетка грид гей */
@@ -262,8 +261,8 @@
     overflow: hidden;
   }
   .day.today {
-    border-color: rgba(125, 207, 255, 0.45);
-    box-shadow: 0 0 0 1px rgba(125, 207, 255, 0.12);
+    border-color: rgba(111, 217, 196, 0.45);
+    box-shadow: 0 0 0 1px rgba(111, 217, 196, 0.12);
   }
 
   .day-head {
@@ -272,7 +271,7 @@
     background: rgba(255, 255, 255, 0.015);
     display: flex; align-items: center; justify-content: space-between;
   }
-  .day-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; }
+  .day-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 17px; }
   .day.today .day-name { color: var(--accent); }
   .day-badge {
     font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-dim);
@@ -304,16 +303,16 @@
   .card.current-lesson {
     border-color: var(--now);
     border-left-width: 4px;
-    box-shadow: 0 0 16px rgba(158, 206, 106, 0.15);
+    box-shadow: 0 0 16px rgba(143, 227, 166, 0.15);
     opacity: 1;
   }
 
   .card-time {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11.5px;
+    font-size: 12.5px;
     font-weight: 500;
     color: var(--text-dim);
-    margin-bottom: 6px;
+    margin-bottom: 7px;
     display: flex; align-items: center; justify-content: space-between; gap: 6px;
   }
   .type-tag {
@@ -328,10 +327,10 @@
   .card[data-type="лабораторная"] .type-tag { color: var(--lab); background: var(--lab-bg); }
 
   .card-title {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.4;
     color: var(--text);
-    margin: 0 0 8px;
+    margin: 0 0 9px;
     font-weight: 600;
   }
   .opt-note {
@@ -353,9 +352,9 @@
     margin-top: 4px;
   }
   .teacher-name {
-    font-size: 11.5px;
+    font-size: 12.5px;
     color: var(--text-dim);
-    line-height: 1.35;
+    line-height: 1.4;
   }
   .room-badge {
     font-family: 'IBM Plex Mono', monospace;
@@ -370,7 +369,7 @@
   }
 
   /* онлайн-пара (Zoom): бейдж может переноситься */
-  .room-badge.online { white-space: normal; color: var(--accent); border-color: rgba(125, 207, 255, 0.3); }
+  .room-badge.online { white-space: normal; color: var(--accent); border-color: rgba(111, 217, 196, 0.3); }
 
   /* увед внутри страницы */
   .toast {
@@ -378,8 +377,8 @@
     bottom: 20px;
     right: 20px;
     max-width: 340px;
-    background: #2a2f3e;
-    border: 1px solid var(--lec);
+    background: rgba(30, 44, 48, 0.92);
+    border: 1px solid var(--accent);
     color: var(--text);
     padding: 12px 16px;
     border-radius: 10px;
@@ -467,10 +466,10 @@
     transform: translateX(-50%) translateY(120px);
     width: calc(100% - 32px);
     max-width: 480px;
-    background: rgba(42, 47, 62, 0.95);
+    background: rgba(30, 44, 48, 0.9);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(122, 162, 247, 0.35);
+    border: 1px solid rgba(122, 184, 232, 0.35);
     border-radius: 12px;
     padding: 14px 16px;
     display: flex;
@@ -526,7 +525,7 @@
   }
   .btn-install-confirm {
     background: var(--lec);
-    color: #1a1d26;
+    color: #0f1a1c;
     border: none;
     padding: 8px 14px;
     border-radius: 7px;
@@ -547,12 +546,310 @@
     border-radius: 4px;
   }
   .btn-install-close:hover { color: var(--text); }
+
+
+  /* ===== Анимации появления ===== */
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .hero { animation: rise .6s cubic-bezier(.2,.7,.2,1) both; }
+  .day { animation: rise .6s cubic-bezier(.2,.7,.2,1) both; }
+  .day:nth-child(1) { animation-delay: .08s; } .day:nth-child(2) { animation-delay: .16s; }
+  .day:nth-child(3) { animation-delay: .24s; } .day:nth-child(4) { animation-delay: .32s; }
+  .day:nth-child(5) { animation-delay: .40s; }
+  .teachers { animation: rise .6s .45s cubic-bezier(.2,.7,.2,1) both; }
+  .pulse-dot { animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 50% { box-shadow: 0 0 0 7px rgba(143, 227, 166, 0); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  /* ===== Кнопка входа в Zoom ===== */
+  .zoom-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 11px; border-radius: 8px;
+    font-size: 12.5px; font-weight: 600; text-decoration: none;
+    color: #0f1a1c; background: var(--accent);
+    transition: transform .15s ease, filter .15s ease;
+  }
+  .zoom-btn:hover { transform: translateY(-1px); filter: brightness(1.08); }
+  .zoom-btn small { font-weight: 500; opacity: .7; font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+
+  @media (max-width: 680px) {
+    .hero h1 { font-size: 36px; }
+    .card-title { font-size: 15.5px; }
+    .day { animation: none; }
+  }
+
+  /* ===== ТАЙМЛАЙН-ДИЗАЙН ===== */
+  .hero { background: linear-gradient(135deg, #0e161d, #0a0f14); border-color: #1c2630; }
+  .hero::before { opacity: 0.07; }
+
+  /* Прогресс текущей пары */
+  .live-status { position: relative; overflow: hidden; }
+  .live-progress {
+    position: absolute; left: 0; bottom: 0; height: 3px; width: 0;
+    background: linear-gradient(90deg, var(--accent), var(--lec));
+    transition: width 1s linear;
+  }
+
+  /* Колонка дня */
+  .day { background: #0a0e13; border-radius: 16px; }
+  .day-head { padding: 16px 16px 14px; background: transparent; }
+  .day-name { font-size: 19px; letter-spacing: -0.01em; }
+  .day-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; font-family: 'IBM Plex Mono', monospace; }
+  .day-date { font-size: 12px; color: var(--text-dim); }
+  .day-count { font-size: 10.5px; color: var(--text-faint); }
+  .day.today .day-head { background: linear-gradient(180deg, rgba(45, 212, 191, 0.10), transparent); }
+
+  /* Карточка-пара: слева время, справа содержимое, цветная полоса */
+  .cards { padding: 6px 14px 16px; gap: 0; position: relative; }
+  .card {
+    display: grid; grid-template-columns: 54px 1fr; gap: 12px;
+    border: none; border-radius: 0; background: transparent;
+    padding: 12px 0; box-shadow: none;
+    border-bottom: 1px dashed #18222c;
+  }
+  .card:last-child { border-bottom: none; }
+  .card:hover { background: transparent; transform: none; }
+  .card[data-type] { border-left: none; }
+  .t-col { display: flex; flex-direction: column; align-items: flex-end; padding-top: 1px; }
+  .t-col b { font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
+  .t-col span { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-faint); margin-top: 2px; }
+  .c-body { position: relative; padding-left: 14px; min-width: 0; }
+  .c-body::before {
+    content: ""; position: absolute; left: 0; top: 3px; bottom: 3px; width: 3px; border-radius: 3px;
+    background: var(--lec);
+  }
+  .card[data-type="практика"] .c-body::before { background: var(--prac); }
+  .card[data-type="лабораторная"] .c-body::before { background: var(--lab); }
+  .card .type-tag { display: inline-block; margin: 0 0 6px; font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; }
+  .card-title { margin: 0 0 7px; font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em; }
+  .card-footer { margin-top: 0; }
+  .room-badge { background: transparent; border: 1px solid #263340; color: var(--accent); }
+
+  /* Прошедшие пары сегодня */
+  .card.done { opacity: .38; }
+  .card.done .c-body::before { background: #2a3744; }
+  .card.current-lesson {
+    background: linear-gradient(90deg, rgba(143, 227, 166, 0.10), transparent 85%);
+    margin: 0 -14px; padding: 12px 14px; box-shadow: none; border-radius: 10px; opacity: 1;
+  }
+  .card.current-lesson .t-col b { color: var(--now); }
+
+  /* Окно между парами */
+  .gap {
+    display: flex; align-items: center; gap: 8px; margin: 4px 0;
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-faint);
+  }
+  .gap::before, .gap::after { content: ""; flex: 1; height: 1px; background: repeating-linear-gradient(90deg, #243040 0 4px, transparent 4px 8px); }
+
+  .day.today { border-color: rgba(45, 212, 191, 0.5); box-shadow: 0 0 40px -18px rgba(45, 212, 191, 0.5); }
+  @media (max-width: 680px) {
+    .card { grid-template-columns: 50px 1fr; }
+    .t-col b { font-size: 15px; }
+  }
+
+  /* ===== ШАПКА 2.0: футуристичные кривые ===== */
+  .page { max-width: 1680px; padding-top: 10px; }
+  .hero {
+    padding: 34px 38px 26px;
+    margin-top: 0;
+    border-radius: 0 0 44px 44px;      /* шапка «поднята» к верху и закруглена снизу */
+    background: linear-gradient(160deg, #0d1a20 0%, #081015 55%, #060b0f 100%);
+    border: 1px solid #172530; border-top: none;
+    box-shadow: 0 30px 70px -30px rgba(45, 212, 191, 0.28);
+  }
+  .hero::before { display: none; }
+  .hero-art { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .hero-art .flow { stroke-dasharray: 8 14; animation: flow 18s linear infinite; }
+  .hero-art .flow.slow { animation-duration: 30s; animation-direction: reverse; }
+  @keyframes flow { to { stroke-dashoffset: -440; } }
+  .hero-top, .live-status { position: relative; z-index: 1; }
+  .hero h1 {
+    font-size: 64px; letter-spacing: -0.035em; margin: 14px 0 8px;
+    background: linear-gradient(100deg, #ffffff 15%, #9ff3e6 60%, var(--accent) 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 22px rgba(45, 212, 191, 0.25));
+  }
+  .hero h1 span { -webkit-text-fill-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .hero p.sub { font-size: 15.5px; color: #b6cfcb; }
+  .eyebrow-row { background: rgba(45, 212, 191, 0.07); border-color: rgba(45, 212, 191, 0.25); color: #b6e6df; }
+  .live-status { border-radius: 16px; margin-top: 20px; backdrop-filter: blur(6px); }
+  .hero-code { color: #5f8a85; border-left-color: rgba(45, 212, 191, 0.35); font-size: 12.5px; }
+
+  /* ===== Карточки шире: время сверху, текст на всю ширину ===== */
+  .card { grid-template-columns: 1fr; gap: 6px; padding: 14px 0; }
+  .t-col { flex-direction: row; align-items: baseline; gap: 8px; order: -1; }
+  .t-col b { font-size: 22px; color: var(--accent); letter-spacing: -0.03em; text-shadow: 0 0 18px rgba(45, 212, 191, 0.35); }
+  .t-col span { font-size: 13px; color: var(--text-faint); margin: 0; }
+  .t-col span::before { content: "— "; }
+  .card.current-lesson .t-col b { color: var(--now); text-shadow: 0 0 18px rgba(143, 227, 166, 0.4); }
+  .card.done .t-col b { color: var(--text-faint); text-shadow: none; }
+  .c-body { padding-left: 14px; }
+  .card-title { font-size: 16px; }
+  .teacher-name { font-size: 13px; }
+  .cards { padding: 6px 18px 18px; }
+  .card.current-lesson { margin: 0 -18px; padding: 14px 18px; }
+  .day-head { padding: 18px 18px 14px; }
+
+  @media (min-width: 1025px) and (max-width: 1399px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 1024px) { .hero-code { display: none; } }
+  @media (max-width: 680px) {
+    .hero { padding: 24px 18px 20px; border-radius: 0 0 30px 30px; }
+    .hero h1 { font-size: 46px; }
+    .card { grid-template-columns: 1fr; }
+  }
+
+  /* ===== Карточка «Сейчас / Дальше» (телефон) ===== */
+  .now-card { display: none; }
+  @media (max-width: 680px) {
+    .now-card {
+      display: block; position: relative; overflow: hidden;
+      margin-bottom: 14px; padding: 18px 18px 20px;
+      border-radius: 22px; border: 1px solid rgba(45, 212, 191, 0.35);
+      background: linear-gradient(150deg, #0e1f24, #0a1217);
+      box-shadow: 0 18px 40px -22px rgba(45, 212, 191, 0.5);
+    }
+    .now-card.live { border-color: rgba(143, 227, 166, 0.55); }
+    .now-card.idle { border-color: var(--line); box-shadow: none; }
+    .now-label { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 8px; }
+    .now-card.live .now-label { color: var(--now); }
+    .now-time { font-family: 'IBM Plex Mono', monospace; font-size: 34px; font-weight: 600; letter-spacing: -0.04em; color: var(--accent); margin: 10px 0 2px; text-shadow: 0 0 22px rgba(45, 212, 191, 0.35); }
+    .now-card.live .now-time { color: var(--now); text-shadow: 0 0 22px rgba(143, 227, 166, 0.4); }
+    .now-time small { font-size: 16px; color: var(--text-faint); font-weight: 500; }
+    .now-title { font-size: 19px; font-weight: 600; line-height: 1.3; margin: 6px 0 4px; letter-spacing: -0.01em; }
+    .now-teacher { font-size: 13px; color: var(--text-dim); }
+    .now-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .now-left { font-size: 13px; color: var(--text-dim); }
+    .now-left b { color: var(--text); }
+    .now-card .room-badge { font-size: 14px; padding: 5px 11px; color: var(--accent); }
+    .now-card .zoom-btn { padding: 8px 14px; font-size: 14px; }
+    .now-bar { position: absolute; left: 0; bottom: 0; height: 4px; width: 0; background: linear-gradient(90deg, var(--now), var(--accent)); transition: width 1s linear; }
+  }
+
+  /* ===== Каждая пара - отдельное полупрозрачное окошко, без разделительных линий ===== */
+  .cards { padding: 4px 14px 16px; gap: 10px; }
+  .card {
+    padding: 14px 16px;
+    border: 1px solid rgba(45, 212, 191, 0.10);
+    border-radius: 16px;
+    background: linear-gradient(160deg, rgba(23, 34, 42, 0.72), rgba(14, 21, 28, 0.55));
+    box-shadow: 0 8px 22px -14px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    transition: background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .card:last-child { border-bottom: 1px solid rgba(45, 212, 191, 0.10); }
+  .card:hover {
+    background: linear-gradient(160deg, rgba(30, 46, 56, 0.85), rgba(18, 28, 36, 0.7));
+    border-color: rgba(45, 212, 191, 0.28);
+    transform: translateY(-2px);
+  }
+  .card.current-lesson {
+    margin: 0; padding: 14px 16px; border-radius: 16px;
+    border-color: rgba(143, 227, 166, 0.55);
+    background: linear-gradient(160deg, rgba(143, 227, 166, 0.14), rgba(14, 21, 28, 0.6));
+    box-shadow: 0 0 28px -12px rgba(143, 227, 166, 0.55);
+  }
+  .card.done { opacity: .45; }
+  .card.done:hover { transform: none; }
+  /* окно между парами: просто тихая подпись, без линий */
+  .gap { justify-content: center; margin: 0; }
+  .gap::before, .gap::after { display: none; }
+
+  /* ===== Компактный режим: меньше отступов и размеров ===== */
+  .page { max-width: 1480px; }
+  .grid { gap: 10px; }
+  .day { border-radius: 14px; }
+  .day-head { padding: 12px 14px 8px; }
+  .day-name { font-size: 16px; }
+  .day-date { font-size: 11px; }
+  .day-count { font-size: 10px; }
+  .cards { padding: 2px 10px 10px; gap: 7px; }
+  .card { padding: 9px 12px; gap: 3px; border-radius: 12px; }
+  .card.current-lesson { padding: 9px 12px; border-radius: 12px; }
+  .c-body { padding-left: 10px; padding-right: 0; }
+  .c-body::before { width: 2px; top: 2px; bottom: 2px; }
+  .t-col b { font-size: 17px; }
+  .t-col span { font-size: 11.5px; }
+  .card .type-tag { font-size: 9.5px; padding: 1px 6px; margin-bottom: 3px; }
+  .card-title { font-size: 13.5px; line-height: 1.3; margin-bottom: 4px; }
+  .teacher-name { font-size: 11.5px; line-height: 1.3; }
+  .room-badge { font-size: 11px; padding: 1px 6px; }
+  .card-footer { gap: 4px 8px; }
+  .zoom-btn { padding: 3px 9px; font-size: 11.5px; }
+  .gap { font-size: 10px; }
+
+  /* шапка компактнее */
+  .hero { padding: 22px 28px 18px; border-radius: 0 0 34px 34px; margin-bottom: 14px; }
+  .hero h1 { font-size: 50px; margin: 10px 0 4px; }
+  .hero p.sub { font-size: 14px; }
+  .live-status { margin-top: 14px; padding: 9px 14px; font-size: 13px; }
+  .quick-actions { margin-top: 12px; }
+  .controls-bar { margin-bottom: 12px; }
+  .teachers { padding: 16px 18px; margin-top: 18px; }
+
+  @media (max-width: 680px) {
+    .hero h1 { font-size: 40px; }
+    .hero { padding: 18px 16px 16px; }
+    .card-title { font-size: 14px; }
+    .t-col b { font-size: 16px; }
+  }
+
+  /* ===== 5 дней в одну линию на ноутбуках и ПК (от 1000px) ===== */
+  @media (min-width: 1000px) {
+    .grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; align-items: start; }
+    .page { padding-left: 14px; padding-right: 14px; }
+    .cards { padding: 2px 8px 8px; gap: 6px; }
+    .card { padding: 8px 10px; cursor: pointer; }
+    .card.current-lesson { padding: 8px 10px; }
+    .day-head { padding: 11px 12px 7px; }
+    .card-title { overflow-wrap: anywhere; hyphens: auto; }
+  }
+  @media (min-width: 1000px) and (max-width: 1299px) {
+    .t-col b { font-size: 15px; }
+    .t-col span { font-size: 10.5px; }
+    .card-title { font-size: 12.5px; }
+    .zoom-btn small { display: none; }
+    .day-name { font-size: 14.5px; }
+  }
+
+  /* ===== Преподаватель скрыт, раскрывается по наведению / клику ===== */
+  @media (min-width: 681px) {
+    .card-footer { flex-wrap: wrap; }
+    .teacher-name {
+      order: 2; flex-basis: 100%;
+      max-height: 0; opacity: 0; overflow: hidden; margin: 0;
+      transition: max-height .25s ease, opacity .2s ease, margin .2s ease;
+    }
+    .card:hover .teacher-name, .card.open .teacher-name { max-height: 120px; opacity: 1; margin-top: 4px; }
+  }
 </style>
 </head>
 <body>
 <div class="page">
 
   <div class="hero">
+    <svg class="hero-art" viewBox="0 0 1200 320" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="gl" x1="0" x2="1">
+          <stop offset="0" stop-color="#2dd4bf" stop-opacity="0"/>
+          <stop offset=".45" stop-color="#2dd4bf" stop-opacity=".85"/>
+          <stop offset="1" stop-color="#7ab8e8" stop-opacity=".1"/>
+        </linearGradient>
+        <radialGradient id="orb" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#2dd4bf" stop-opacity=".35"/>
+          <stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- свечение справа -->
+      <circle cx="1020" cy="70" r="260" fill="url(#orb)"/>
+      <!-- плавные линии -->
+      <path d="M0 250 C 220 150, 420 330, 640 220 S 1020 90, 1200 150" fill="none" stroke="url(#gl)" stroke-width="1.6"/>
+      <path class="flow" d="M0 285 C 260 200, 460 340, 700 250 S 1040 140, 1200 205" fill="none" stroke="url(#gl)" stroke-width="1.2"/>
+      <path class="flow slow" d="M0 120 C 200 60, 420 180, 660 90 S 980 20, 1200 70" fill="none" stroke="#7ab8e8" stroke-opacity=".28" stroke-width="1"/>
+      <path d="M0 215 C 240 120, 440 290, 660 190 S 1030 60, 1200 118" fill="none" stroke="#2dd4bf" stroke-opacity=".18" stroke-width="1"/>
+      <!-- узлы -->
+      <g fill="#2dd4bf">
+        <circle cx="640" cy="220" r="3.5"/><circle cx="640" cy="220" r="9" fill="none" stroke="#2dd4bf" stroke-opacity=".4"/>
+        <circle cx="1020" cy="88" r="3"/><circle cx="330" cy="236" r="2.5" fill-opacity=".6"/>
+      </g>
+    </svg>
     <div class="hero-top">
       <div>
         <div class="eyebrow-row"><span class="dot-live"></span>КазУТБ · бырыншы семестр · <span id="currentWeek" style="color: var(--accent); font-weight: 600;">... неделя</span> · Новый корпус</div>
@@ -585,8 +882,12 @@ const <b>building</b> = "IT Campus (4 корпус)";
         <span id="liveText">Загрузка расписания братан...</span>
       </div>
       <span class="live-room" id="liveRoom">—</span>
+      <div class="live-progress" id="liveProgress"></div>
     </div>
   </div>
+
+  <!-- Сейчас / Дальше (виден на телефоне) -->
+  <div class="now-card idle" id="nowCard"></div>
 
   <!-- переключатель дней -->
   <div class="day-tabs" id="dayTabs">
@@ -627,7 +928,7 @@ const <b>building</b> = "IT Campus (4 корпус)";
           <p class="card-title">Устойчивое развитие, экология и БЖД</p>
           <div class="card-footer">
             <span class="teacher-name">Кусайнов Х.Х., профессор / Усенкулова Ш.Ж., асс. профессора</span>
-            <span class="room-badge online">Zoom 7845700332 · код 123456</span>
+            <a class="zoom-btn" href="https://zoom.us/j/7845700332?pwd=123456" target="_blank" rel="noopener" data-zoom-id="7845700332" data-zoom-pwd="123456">▶ Войти в Zoom <small>7845700332</small></a>
           </div>
         </div>
 
@@ -636,7 +937,7 @@ const <b>building</b> = "IT Campus (4 корпус)";
           <p class="card-title">Устойчивое развитие, экология и БЖД</p>
           <div class="card-footer">
             <span class="teacher-name">Кусайнов Х.Х., профессор / Усенкулова Ш.Ж., асс. профессора</span>
-            <span class="room-badge online">Zoom 7845700332 · код 123456</span>
+            <a class="zoom-btn" href="https://zoom.us/j/7845700332?pwd=123456" target="_blank" rel="noopener" data-zoom-id="7845700332" data-zoom-pwd="123456">▶ Войти в Zoom <small>7845700332</small></a>
           </div>
         </div>
       </div>
@@ -955,9 +1256,113 @@ const <b>building</b> = "IT Campus (4 корпус)";
     tab.addEventListener('click', () => selectDayTab(tab.dataset.target));
   });
 
-  if (window.innerWidth <= 680 && jsDay >= 1 && jsDay <= 5) {
-    selectDayTab(jsDay);
+  // На телефоне: только сегодня (в выходные - понедельник), остальное свайпом
+  if (window.innerWidth <= 680) {
+    selectDayTab(jsDay >= 1 && jsDay <= 5 ? jsDay : 1);
   }
+
+
+
+
+  // Клик по карточке раскрывает/скрывает преподавателя (для сенсорных экранов)
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      card.classList.toggle('open');
+    });
+  });
+
+  // Zoom: сначала пробуем открыть приложение с кодом, если не вышло - веб-версия
+  document.addEventListener('click', e => {
+    const a = e.target.closest('.zoom-btn');
+    if (!a) return;
+    {
+      e.preventDefault();
+      const id = a.dataset.zoomId, pwd = a.dataset.zoomPwd;
+      const web = 'https://zoom.us/j/' + id + '?pwd=' + pwd;
+      let left = false;
+      const onHide = () => { if (document.hidden) left = true; };
+      document.addEventListener('visibilitychange', onHide);
+      window.location.href = 'zoommtg://zoom.us/join?confno=' + id + '&pwd=' + pwd;
+      setTimeout(() => {
+        document.removeEventListener('visibilitychange', onHide);
+        if (!left) window.open(web, '_blank', 'noopener');
+      }, 1800);
+    }
+  });
+
+  // Свайп влево/вправо переключает день (на телефоне)
+  (function () {
+    const grid = document.getElementById('grid');
+    let x0 = null, y0 = null;
+    grid.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+    grid.addEventListener('touchend', e => {
+      if (x0 === null || window.innerWidth > 680) return;
+      const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      x0 = null;
+      if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      const active = document.querySelector('.day-tab.active');
+      let cur = active && active.dataset.target !== 'all' ? parseInt(active.dataset.target, 10) : 0;
+      let next = dx < 0 ? cur + 1 : cur - 1;
+      if (cur === 0) next = 1;
+      if (next < 1 || next > 5) return;
+      selectDayTab(next);
+    }, { passive: true });
+  })();
+
+
+  // ===== Оформление: перестраиваем карточки в таймлайн =====
+  (function buildTimeline() {
+    const MONTHS = ['янв','фев','мар','апр','мая','июн','июл','авг','сен','окт','ноя','дек'];
+    const now = new Date();
+    const monday = new Date(now);
+    monday.setDate(now.getDate() - ((now.getDay() + 6) % 7)); // понедельник этой недели
+
+    document.querySelectorAll('.day').forEach(day => {
+      const d = parseInt(day.dataset.day, 10);
+      const date = new Date(monday); date.setDate(monday.getDate() + d - 1);
+      const cards = Array.from(day.querySelectorAll('.card:not(.optional-pe)'));
+
+      // дата и число пар в шапке дня
+      const head = day.querySelector('.day-head');
+      const oldBadge = head.querySelector('.day-badge');
+      if (oldBadge) oldBadge.remove();
+      const meta = document.createElement('div');
+      meta.className = 'day-meta';
+      meta.innerHTML = '<span class="day-date">' + date.getDate() + ' ' + MONTHS[date.getMonth()] + '</span>' +
+        '<span class="day-count">' + cards.length + ' пар</span>';
+      head.appendChild(meta);
+
+      let prevEnd = null;
+      cards.forEach(card => {
+        // колонка времени слева
+        const tag = card.querySelector('.type-tag');
+        const timeBox = card.querySelector('.card-time');
+        const t = document.createElement('div');
+        t.className = 't-col';
+        t.innerHTML = '<b>' + card.dataset.start + '</b><span>' + card.dataset.end + '</span>';
+        // тело карточки
+        const body = document.createElement('div');
+        body.className = 'c-body';
+        if (tag) body.appendChild(tag);
+        Array.from(card.children).forEach(ch => { if (ch !== timeBox) body.appendChild(ch); });
+        if (timeBox) timeBox.remove();
+        card.appendChild(t);
+        card.appendChild(body);
+
+        // плашка «окно» между парами
+        const st = toMin(card.dataset.start);
+        if (prevEnd !== null && st - prevEnd >= 60) {
+          const h = Math.round((st - prevEnd) / 60);
+          const g = document.createElement('div');
+          g.className = 'gap';
+          g.textContent = 'окно ' + h + ' ч';
+          card.parentNode.insertBefore(g, card);
+        }
+        prevEnd = toMin(card.dataset.end);
+      });
+    });
+  })();
 
   // Фильтр по типу пар
   document.querySelectorAll('.chip[data-type]').forEach(chip => {
@@ -1047,6 +1452,12 @@ const <b>building</b> = "IT Campus (4 корпус)";
 
   updateNotifyUI();
 
+  // Аудитория карточки (для онлайн-пар - 'Zoom')
+  function roomOf(card) {
+    const r = card.querySelector('.room-badge');
+    return r ? r.textContent.trim() : 'Zoom онлайн';
+  }
+
   // Определяет текущую/следующую пару, подсвечивает её и шлёт напоминания
   function updateLiveStatus() {
     const now = new Date();
@@ -1056,7 +1467,9 @@ const <b>building</b> = "IT Campus (4 корпус)";
     const liveText = document.getElementById('liveText');
     const liveRoom = document.getElementById('liveRoom');
 
-    document.querySelectorAll('.card').forEach(c => c.classList.remove('current-lesson'));
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('current-lesson', 'done'));
+    const prog = document.getElementById('liveProgress');
+    if (prog) prog.style.width = '0';
 
     const todayCol = document.querySelector('.day[data-day="' + curDay + '"]');
     if (!todayCol) {
@@ -1074,7 +1487,7 @@ const <b>building</b> = "IT Campus (4 корпус)";
       const start = toMin(c.dataset.start);
       const end = toMin(c.dataset.end);
       const title = c.querySelector('.card-title').textContent.trim();
-      const room = c.querySelector('.room-badge').textContent.trim();
+      const room = roomOf(c);
 
       if (notifyEnabled && start - curMin === 10) {
         const key10 = curDay + '-' + c.dataset.start + '-10m';
@@ -1092,6 +1505,8 @@ const <b>building</b> = "IT Campus (4 корпус)";
         }
       }
 
+      if (curMin >= end) c.classList.add('done'); // уже прошла
+
       if (curMin >= start && curMin < end) {
         currentCard = c;
       } else if (curMin < start && !nextCard) {
@@ -1104,14 +1519,15 @@ const <b>building</b> = "IT Campus (4 корпус)";
       statusBox.classList.remove('chill');
       const left = toMin(currentCard.dataset.end) - curMin;
       const title = currentCard.querySelector('.card-title').textContent;
-      const room = currentCard.querySelector('.room-badge').textContent;
+      const room = roomOf(currentCard);
       liveText.innerHTML = '<b>Сейчас идет:</b> ' + title + ' <span>(осталось ' + left + ' мин)</span>';
       liveRoom.textContent = room;
+      if (prog) prog.style.width = Math.round((1 - left / (toMin(currentCard.dataset.end) - toMin(currentCard.dataset.start))) * 100) + '%';
     } else if (nextCard) {
       statusBox.classList.add('chill');
       const wait = toMin(nextCard.dataset.start) - curMin;
       const title = nextCard.querySelector('.card-title').textContent;
-      const room = nextCard.querySelector('.room-badge').textContent;
+      const room = roomOf(nextCard);
       const waitStr = wait >= 60 ? Math.floor(wait / 60) + ' ч ' + (wait % 60) + ' мин' : wait + ' мин';
       liveText.innerHTML = '<b>Следующая пара через ' + waitStr + ':</b> ' + title + ' (' + nextCard.dataset.start + ')';
       liveRoom.textContent = room;
@@ -1124,6 +1540,63 @@ const <b>building</b> = "IT Campus (4 корпус)";
 
   updateLiveStatus();
   setInterval(updateLiveStatus, 20000);
+
+
+  // ===== Карточка «Сейчас / Дальше» наверху (телефон) =====
+  const DAY_NAMES = ['воскресенье','понедельник','вторник','среду','четверг','пятницу','субботу'];
+  function updateNowCard() {
+    const box = document.getElementById('nowCard');
+    if (!box) return;
+    const now = new Date();
+    const curMin = now.getHours() * 60 + now.getMinutes();
+    let card = null, offset = 0, live = false;
+
+    // ищем текущую пару, иначе ближайшую (сегодня или в ближайшие дни)
+    for (offset = 0; offset <= 7 && !card; offset++) {
+      const wd = (now.getDay() + offset) % 7;
+      const col = document.querySelector('.day[data-day="' + wd + '"]');
+      if (!col) continue;
+      for (const c of col.querySelectorAll('.card:not(.optional-pe)')) {
+        const st = toMin(c.dataset.start), en = toMin(c.dataset.end);
+        if (offset === 0 && curMin >= st && curMin < en) { card = c; live = true; break; }
+        if (offset > 0 || curMin < st) { card = c; break; }
+      }
+      if (card) break;
+    }
+    if (!card) { box.className = 'now-card idle'; box.innerHTML = '<div class="now-label">Пар нет</div>'; return; }
+
+    const title = card.querySelector('.card-title').textContent;
+    const teacher = card.querySelector('.teacher-name').textContent;
+    const roomEl = card.querySelector('.room-badge, .zoom-btn');
+    const roomHtml = roomEl ? roomEl.outerHTML : '';
+    const st = toMin(card.dataset.start), en = toMin(card.dataset.end);
+
+    let label, left, pct = 0;
+    if (live) {
+      const rest = en - curMin;
+      label = 'Сейчас идёт';
+      left = 'осталось <b>' + rest + ' мин</b>';
+      pct = Math.round((1 - rest / (en - st)) * 100);
+    } else if (offset === 0) {
+      const w = st - curMin;
+      label = 'Дальше';
+      left = 'через <b>' + (w >= 60 ? Math.floor(w / 60) + ' ч ' + (w % 60) + ' мин' : w + ' мин') + '</b>';
+    } else {
+      label = offset === 1 ? 'Завтра первая пара' : 'Ближайшая пара · ' + DAY_NAMES[(now.getDay() + offset) % 7];
+      left = 'начало в <b>' + card.dataset.start + '</b>';
+    }
+
+    box.className = 'now-card' + (live ? ' live' : '');
+    box.innerHTML =
+      '<div class="now-label"><span class="pulse-dot"></span>' + label + '</div>' +
+      '<div class="now-time">' + card.dataset.start + ' <small>— ' + card.dataset.end + '</small></div>' +
+      '<div class="now-title">' + title + '</div>' +
+      '<div class="now-teacher">' + teacher + '</div>' +
+      '<div class="now-foot"><span class="now-left">' + left + '</span>' + roomHtml + '</div>' +
+      (live ? '<div class="now-bar" style="width:' + pct + '%"></div>' : '');
+  }
+  updateNowCard();
+  setInterval(updateNowCard, 20000);
 
   // Универсальный установщик PWA
   let deferredInstallPrompt = null;
