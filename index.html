@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#07090e">
+<meta name="theme-color" content="#1a1d26">
 
 <!-- картинка -->
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,33 +18,33 @@
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
 
   :root {
-    --bg: #07090e;
-    --bg-panel: #0d111a;
-    --bg-panel-2: #131926;
-    --bg-card-hover: #182032;
-    --line: #1e2638;
-    --line-soft: #151b28;
-    --text: #eef2f8;
-    --text-dim: #94a0b8;
-    --text-faint: #5e6b85;
+    --bg: #1a1d26;
+    --bg-panel: #212532;
+    --bg-panel-2: #2a2f3e;
+    --bg-card-hover: #323849;
+    --line: #373d50;
+    --line-soft: #2c3242;
+    --text: #e4e8f0;
+    --text-dim: #aab2c5;
+    --text-faint: #7f8aa3;
 
-    --lec: #4e8cff;
-    --lec-bg: rgba(78, 140, 255, 0.12);
-    --prac: #f59e0b;
-    --prac-bg: rgba(245, 158, 11, 0.12);
-    --lab: #a855f7;
-    --lab-bg: rgba(168, 85, 247, 0.14);
-    --accent: #22d3ee;
-    --accent-bg: rgba(34, 211, 238, 0.10);
-    --now: #10b981;
+    --lec: #7aa2f7;
+    --lec-bg: rgba(122, 162, 247, 0.12);
+    --prac: #e0af68;
+    --prac-bg: rgba(224, 175, 104, 0.12);
+    --lab: #bb9af7;
+    --lab-bg: rgba(187, 154, 247, 0.14);
+    --accent: #7dcfff;
+    --accent-bg: rgba(125, 207, 255, 0.10);
+    --now: #9ece6a;
   }
 
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body { margin: 0; padding: 0; }
   body {
     background:
-      radial-gradient(ellipse 900px 450px at 15% -5%, rgba(78, 140, 255, 0.09), transparent 65%),
-      radial-gradient(ellipse 800px 450px at 95% 0%, rgba(168, 85, 247, 0.08), transparent 65%),
+      radial-gradient(ellipse 900px 450px at 15% -5%, rgba(122, 162, 247, 0.09), transparent 65%),
+      radial-gradient(ellipse 800px 450px at 95% 0%, rgba(187, 154, 247, 0.08), transparent 65%),
       var(--bg);
     color: var(--text);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -58,12 +58,12 @@
   .hero {
     position: relative;
     border: 1px solid var(--line);
-    background: linear-gradient(180deg, rgba(19, 25, 38, 0.92), rgba(13, 17, 26, 0.96));
-    border-radius: 14px;
-    padding: 26px 28px 22px;
+    background: linear-gradient(180deg, rgba(42, 47, 62, 0.9), rgba(33, 37, 50, 0.95));
+    border-radius: 18px;
+    padding: 28px 30px 24px;
     overflow: hidden;
     margin-bottom: 18px;
-    box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.3);
   }
   .hero::before {
     content: "";
@@ -73,7 +73,7 @@
       linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
     background-size: 32px 32px;
     mask-image: linear-gradient(180deg, black, transparent 85%);
-    opacity: 0.45;
+    opacity: 0.18; /* сетка почти незаметна */
     pointer-events: none;
   }
   .hero-top { position: relative; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
@@ -83,14 +83,14 @@
     background: rgba(255, 255, 255, 0.03); border: 1px solid var(--line);
     padding: 4px 11px; border-radius: 999px;
   }
-  .dot-live { width: 7px; height: 7px; border-radius: 50%; background: var(--now); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
+  .dot-live { width: 7px; height: 7px; border-radius: 50%; background: var(--now); box-shadow: 0 0 0 3px rgba(158, 206, 106, 0.2); }
   .hero h1 {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
     font-size: 38px;
     line-height: 1.08;
     margin: 12px 0 6px;
-    color: #f8fafc;
+    color: #f1f4fa;
     letter-spacing: -0.02em;
   }
   .hero h1 span { color: var(--lec); }
@@ -115,13 +115,13 @@
     font-family: 'Inter', sans-serif;
   }
   .btn-drive {
-    background: linear-gradient(135deg, rgba(78, 140, 255, 0.18), rgba(168, 85, 247, 0.18));
-    border-color: rgba(78, 140, 255, 0.4);
+    background: linear-gradient(135deg, rgba(122, 162, 247, 0.18), rgba(187, 154, 247, 0.18));
+    border-color: rgba(122, 162, 247, 0.4);
     color: #fff;
   }
   .btn-drive:hover {
     border-color: var(--lec);
-    background: linear-gradient(135deg, rgba(78, 140, 255, 0.28), rgba(168, 85, 247, 0.28));
+    background: linear-gradient(135deg, rgba(122, 162, 247, 0.28), rgba(187, 154, 247, 0.28));
     transform: translateY(-1px);
   }
   .btn-notify {
@@ -129,13 +129,13 @@
     color: var(--text-dim);
   }
   .btn-notify:hover {
-    border-color: #2c384e;
+    border-color: #4a526a;
     color: var(--text);
   }
   .btn-notify.enabled {
-    background: rgba(16, 185, 129, 0.12);
-    border-color: rgba(16, 185, 129, 0.45);
-    color: #34d399;
+    background: rgba(158, 206, 106, 0.12);
+    border-color: rgba(158, 206, 106, 0.45);
+    color: #a9d67f;
   }
   .btn-action svg { width: 16px; height: 16px; flex-shrink: 0; }
 
@@ -145,22 +145,22 @@
     margin-top: 16px;
     padding: 12px 16px;
     border-radius: 9px;
-    background: rgba(16, 185, 129, 0.08);
-    border: 1px solid rgba(16, 185, 129, 0.3);
+    background: rgba(158, 206, 106, 0.08);
+    border: 1px solid rgba(158, 206, 106, 0.3);
     display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
     font-size: 13.5px;
   }
   .live-status.chill {
-    background: rgba(78, 140, 255, 0.07);
-    border-color: rgba(78, 140, 255, 0.25);
+    background: rgba(122, 162, 247, 0.07);
+    border-color: rgba(122, 162, 247, 0.25);
   }
   .live-left { display: flex; align-items: center; gap: 10px; }
   .pulse-dot {
     width: 8px; height: 8px; border-radius: 50%; background: var(--now);
-    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    box-shadow: 0 0 0 4px rgba(158, 206, 106, 0.2);
     flex-shrink: 0;
   }
-  .live-status.chill .pulse-dot { background: var(--lec); box-shadow: 0 0 0 4px rgba(78, 140, 255, 0.2); }
+  .live-status.chill .pulse-dot { background: var(--lec); box-shadow: 0 0 0 4px rgba(122, 162, 247, 0.2); }
   .live-room {
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 600;
@@ -210,7 +210,7 @@
   .chip[data-type="лекция"] .sw { background: var(--lec); }
   .chip[data-type="практика"] .sw { background: var(--prac); }
   .chip[data-type="лабораторная"] .sw { background: var(--lab); }
-  .chip.active { color: var(--text); border-color: #2c384e; background: var(--bg-panel-2); }
+  .chip.active { color: var(--text); border-color: #4a526a; background: var(--bg-panel-2); }
   .chip.off { opacity: 0.38; }
 
   /* мобиль дни */
@@ -240,12 +240,12 @@
   }
   .day-tab.active {
     background: var(--lec);
-    color: #fff;
-    box-shadow: 0 2px 10px rgba(78, 140, 255, 0.35);
+    color: #1a1d26;
+    box-shadow: 0 2px 10px rgba(122, 162, 247, 0.35);
   }
   .day-tab.is-today:not(.active) {
     color: var(--accent);
-    border: 1px solid rgba(34, 211, 238, 0.3);
+    border: 1px solid rgba(125, 207, 255, 0.3);
   }
 
   /* сетка грид гей */
@@ -257,13 +257,13 @@
   .day {
     background: var(--bg-panel);
     border: 1px solid var(--line);
-    border-radius: 10px;
+    border-radius: 14px;
     display: flex; flex-direction: column;
     overflow: hidden;
   }
   .day.today {
-    border-color: rgba(34, 211, 238, 0.45);
-    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.12);
+    border-color: rgba(125, 207, 255, 0.45);
+    box-shadow: 0 0 0 1px rgba(125, 207, 255, 0.12);
   }
 
   .day-head {
@@ -280,15 +280,15 @@
     padding: 2px 7px; border-radius: 4px;
   }
 
-  .cards { padding: 10px; display: flex; flex-direction: column; gap: 9px; flex: 1; }
+  .cards { padding: 12px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 
   .card {
     position: relative;
     border: 1px solid var(--line);
     border-left: 3px solid var(--lec);
     background: var(--bg-panel-2);
-    border-radius: 7px;
-    padding: 11px 12px;
+    border-radius: 10px;
+    padding: 13px 14px;
     transition: transform .12s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
   }
   .card:hover { background: var(--bg-card-hover); }
@@ -304,7 +304,7 @@
   .card.current-lesson {
     border-color: var(--now);
     border-left-width: 4px;
-    box-shadow: 0 0 16px rgba(16, 185, 129, 0.15);
+    box-shadow: 0 0 16px rgba(158, 206, 106, 0.15);
     opacity: 1;
   }
 
@@ -328,8 +328,8 @@
   .card[data-type="лабораторная"] .type-tag { color: var(--lab); background: var(--lab-bg); }
 
   .card-title {
-    font-size: 13.5px;
-    line-height: 1.35;
+    font-size: 14px;
+    line-height: 1.4;
     color: var(--text);
     margin: 0 0 8px;
     font-weight: 600;
@@ -361,7 +361,7 @@
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11.5px;
     font-weight: 600;
-    color: #e2e8f0;
+    color: #e4e8f0;
     background: rgba(255, 255, 255, 0.07);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 2px 7px;
@@ -369,20 +369,23 @@
     white-space: nowrap;
   }
 
+  /* онлайн-пара (Zoom): бейдж может переноситься */
+  .room-badge.online { white-space: normal; color: var(--accent); border-color: rgba(125, 207, 255, 0.3); }
+
   /* увед внутри страницы */
   .toast {
     position: fixed;
     bottom: 20px;
     right: 20px;
     max-width: 340px;
-    background: #131926;
+    background: #2a2f3e;
     border: 1px solid var(--lec);
     color: var(--text);
     padding: 12px 16px;
     border-radius: 10px;
     font-size: 13px;
     line-height: 1.45;
-    box-shadow: 0 12px 28px rgba(0,0,0,0.65);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
     z-index: 999;
     opacity: 0;
     transform: translateY(12px);
@@ -464,17 +467,17 @@
     transform: translateX(-50%) translateY(120px);
     width: calc(100% - 32px);
     max-width: 480px;
-    background: rgba(19, 25, 38, 0.95);
+    background: rgba(42, 47, 62, 0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(78, 140, 255, 0.35);
+    border: 1px solid rgba(122, 162, 247, 0.35);
     border-radius: 12px;
     padding: 14px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
     z-index: 1000;
     opacity: 0;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
@@ -523,7 +526,7 @@
   }
   .btn-install-confirm {
     background: var(--lec);
-    color: #fff;
+    color: #1a1d26;
     border: none;
     padding: 8px 14px;
     border-radius: 7px;
@@ -601,7 +604,6 @@ const <b>building</b> = "IT Campus (4 корпус)";
       <div class="chip active" data-type="лекция"><span class="sw"></span>Лекции</div>
       <div class="chip active" data-type="практика"><span class="sw"></span>Практики</div>
       <div class="chip active" data-type="лабораторная"><span class="sw"></span>Лаб. работы</div>
-      <div class="chip active" id="togglePeChip" title="Показать/скрыть физру в 14:00">Бесполезность</div>
     </div>
   </div>
 
@@ -616,25 +618,25 @@ const <b>building</b> = "IT Campus (4 корпус)";
           <p class="card-title">Информационно-коммуникационные технологии</p>
           <div class="card-footer">
             <span class="teacher-name">Сейталиева А.А., PhD</span>
-            <span class="room-badge">ауд. 4/502</span>
+            <span class="room-badge">ауд. 4/402</span>
           </div>
         </div>
 
-        <div class="card" data-type="лекция" data-start="11:00" data-end="11:50">
-          <div class="card-time">11:00–11:50 <span class="type-tag">лекция</span></div>
+        <div class="card" data-type="лекция" data-start="14:00" data-end="14:50">
+          <div class="card-time">14:00–14:50 <span class="type-tag">лекция</span></div>
           <p class="card-title">Устойчивое развитие, экология и БЖД</p>
           <div class="card-footer">
-            <span class="teacher-name">Кусайнов Х.Х., профессор</span>
-            <span class="room-badge">ауд. 4/403</span>
+            <span class="teacher-name">Кусайнов Х.Х., профессор / Усенкулова Ш.Ж., асс. профессора</span>
+            <span class="room-badge online">Zoom 7845700332 · код 123456</span>
           </div>
         </div>
 
-        <div class="card" data-type="лекция" data-start="12:00" data-end="12:50">
-          <div class="card-time">12:00–12:50 <span class="type-tag">лекция</span></div>
+        <div class="card" data-type="лекция" data-start="15:00" data-end="15:50">
+          <div class="card-time">15:00–15:50 <span class="type-tag">лекция</span></div>
           <p class="card-title">Устойчивое развитие, экология и БЖД</p>
           <div class="card-footer">
-            <span class="teacher-name">Кусайнов Х.Х., профессор</span>
-            <span class="room-badge">ауд. 4/403</span>
+            <span class="teacher-name">Кусайнов Х.Х., профессор / Усенкулова Ш.Ж., асс. профессора</span>
+            <span class="room-badge online">Zoom 7845700332 · код 123456</span>
           </div>
         </div>
       </div>
@@ -795,7 +797,7 @@ const <b>building</b> = "IT Campus (4 корпус)";
           <div class="card-time">13:00–13:50 <span class="type-tag">практика</span></div>
           <p class="card-title">Устойчивое развитие, экология и БЖД</p>
           <div class="card-footer">
-            <span class="teacher-name">Князева К.Ж., ассистент</span>
+            <span class="teacher-name">Князова К.Ж., ассистент / Жанкулова Л.К., сеньор-лектор</span>
             <span class="room-badge">ауд. 2/501</span>
           </div>
         </div>
@@ -859,26 +861,6 @@ const <b>building</b> = "IT Campus (4 корпус)";
             <span class="room-badge">ауд. 2/301</span>
           </div>
         </div>
-
-        <div class="card optional-pe" data-type="практика" data-start="14:00" data-end="14:50" data-optional="true">
-          <div class="card-time">14:00–14:50 <span class="type-tag">практика</span></div>
-          <span class="opt-note">по расписанию / обычно нет</span>
-          <p class="card-title">Физическая культура(Бесполезность)</p>
-          <div class="card-footer">
-            <span class="teacher-name">Шкурков А.С., асс. профессора</span>
-            <span class="room-badge">спортзал</span>
-          </div>
-        </div>
-
-        <div class="card optional-pe" data-type="практика" data-start="15:00" data-end="15:50" data-optional="true">
-          <div class="card-time">15:00–15:50 <span class="type-tag">практика</span></div>
-          <span class="opt-note">по расписанию / обычно нет</span>
-          <p class="card-title">Физическая культура(Бесполезность)</p>
-          <div class="card-footer">
-            <span class="teacher-name">Шкурков А.С., асс. профессора</span>
-            <span class="room-badge">спортзал</span>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -888,7 +870,7 @@ const <b>building</b> = "IT Campus (4 корпус)";
     <h2>Преподаватели</h2>
     <div class="t-grid">
       <div class="t-row"><span class="t-name">Сейталиева А.А.</span><span class="t-role">PhD · ИКТ (лекция)</span></div>
-      <div class="t-row"><span class="t-name">Кусайнов Х.Х.</span><span class="t-role">профессор · Экология и БЖД</span></div>
+      <div class="t-row"><span class="t-name">Кусайнов Х.Х.</span><span class="t-role">профессор · Экология и БЖД (лек.)</span></div>
       <div class="t-row"><span class="t-name">Қыдырғалиұлы Д.</span><span class="t-role">сеньор-лектор · Алгоритмы, СИ (лаб.)</span></div>
       <div class="t-row"><span class="t-name">Қыдырғалиұлы Р.</span><span class="t-role">сеньор-лектор · Алгоритмы, СИ (лек.)</span></div>
       <div class="t-row"><span class="t-name">Исина Н.К.</span><span class="t-role">асс. профессора · Линейная алгебра</span></div>
@@ -900,10 +882,11 @@ const <b>building</b> = "IT Campus (4 корпус)";
       <div class="t-row"><span class="t-name">Асаинов А.Ж.</span><span class="t-role">сеньор-лектор · Модуль экономики (ср.)</span></div>
       <div class="t-row"><span class="t-name">Лузанов В.А.</span><span class="t-role">сеньор-лектор · Модуль экономики (чт. 10:00)</span></div>
       <div class="t-row"><span class="t-name">Тасанова Г.Д.</span><span class="t-role">сеньор-лектор · Модуль экономики (чт. 12:00)</span></div>
-      <div class="t-row"><span class="t-name">Князева К.Ж.</span><span class="t-role">ассистент · Экология и БЖД (пр.)</span></div>
+      <div class="t-row"><span class="t-name">Князова К.Ж.</span><span class="t-role">ассистент · Экология и БЖД (пр.)</span></div>
+      <div class="t-row"><span class="t-name">Усенкулова Ш.Ж.</span><span class="t-role">асс. профессора · Экология и БЖД (пн., онлайн)</span></div>
+      <div class="t-row"><span class="t-name">Жанкулова Л.К.</span><span class="t-role">сеньор-лектор · Экология и БЖД (чт.)</span></div>
       <div class="t-row"><span class="t-name">Ишунин И.Л.</span><span class="t-role">ассистент · Введение в ИИ (лаб.)</span></div>
       <div class="t-row"><span class="t-name">Бегайдаров К.Р.</span><span class="t-role">ассистент · Физ. культура (пт. 10:00)</span></div>
-      <div class="t-row"><span class="t-name">Шкурков А.С.</span><span class="t-role">асс. профессора · Физ. культура (пт. 14:00)</span></div>
     </div>
     <div class="foot-note">
       <span><span class="k">//</span> КНиИС-262/3 · КазУТБ</span>
@@ -956,6 +939,7 @@ const <b>building</b> = "IT Campus (4 корпус)";
     if (parseInt(t.dataset.target, 10) === jsDay) t.classList.add('is-today');
   });
 
+  // Показывает выбранный день (на телефоне), 'all' - все дни
   function selectDayTab(target) {
     tabs.forEach(t => t.classList.toggle('active', t.dataset.target === String(target)));
     days.forEach(d => {
@@ -988,17 +972,7 @@ const <b>building</b> = "IT Campus (4 корпус)";
     });
   });
 
-  // Переключатель бесполезности
-  const peChip = document.getElementById('togglePeChip');
-  peChip.addEventListener('click', () => {
-    peChip.classList.toggle('active');
-    peChip.classList.toggle('off');
-    const show = peChip.classList.contains('active');
-    document.querySelectorAll('.card.optional-pe').forEach(c => {
-      c.classList.toggle('pe-hidden', !show);
-    });
-  });
-
+  // Переводит 'ЧЧ:ММ' в минуты от полуночи
   function toMin(str) {
     const [h, m] = str.split(':').map(Number);
     return h * 60 + m;
@@ -1011,12 +985,14 @@ const <b>building</b> = "IT Campus (4 корпус)";
   let notifyEnabled = localStorage.getItem('kniis_notify') === 'true';
   const sentNotifications = new Set();
 
+  // Всплывающее сообщение внизу экрана
   function showToast(msg) {
     toastEl.innerHTML = msg;
     toastEl.classList.add('show');
     setTimeout(() => toastEl.classList.remove('show'), 4500);
   }
 
+  // Обновляет вид кнопки уведомлений
   function updateNotifyUI() {
     if (!('Notification' in window) || Notification.permission !== 'granted') {
       notifyEnabled = false;
@@ -1027,6 +1003,7 @@ const <b>building</b> = "IT Campus (4 корпус)";
       : 'Уведомления: Выкл';
   }
 
+  // Шлёт системное уведомление (или toast, если нельзя)
   function sendNotification(title, body) {
     if (notifyEnabled && 'Notification' in window && Notification.permission === 'granted') {
       try {
@@ -1070,6 +1047,7 @@ const <b>building</b> = "IT Campus (4 корпус)";
 
   updateNotifyUI();
 
+  // Определяет текущую/следующую пару, подсвечивает её и шлёт напоминания
   function updateLiveStatus() {
     const now = new Date();
     const curDay = now.getDay();
